@@ -3,15 +3,17 @@ const { password } = require('./custom.validation');
 
 const register = {
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
+    email: Joi.string().email(),
     password: Joi.string().required().custom(password),
     name: Joi.string().required(),
+    userName: Joi.string().required(),
+    phoneNumber: Joi.string().regex(/^[a-z0-9_-]{1,25}$/i)
   }),
 };
 
 const login = {
   body: Joi.object().keys({
-    email: Joi.string().required(),
+    userName: Joi.string().required(),
     password: Joi.string().required(),
   }),
 };

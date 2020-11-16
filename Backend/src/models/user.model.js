@@ -11,15 +11,30 @@ const userSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    email: {
+    userName: {
       type: String,
       required: true,
+      trim: true,
+    },
+    email: {
+      type: String,
       unique: true,
       trim: true,
       lowercase: true,
       validate(value) {
         if (!validator.isEmail(value)) {
           throw new Error('Invalid email');
+        }
+      },
+    },
+    phoneNumber: {
+      type: String,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      validate(value) {
+        if (!validator.isMobilePhone(value)) {
+          throw new Error('Invalid phone number');
         }
       },
     },
